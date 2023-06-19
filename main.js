@@ -1,3 +1,8 @@
+const input = document.getElementById('input');
+const output = document.querySelector('p');
+
+output.innerHTML = 'hi';
+
 let num1 = 0;
 let operator = '';
 let num2 = 0; 
