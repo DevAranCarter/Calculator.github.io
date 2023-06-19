@@ -22,32 +22,31 @@ const divide = document.querySelector('#divide');
 const equals = document.querySelector('#equals');
 
 function setDivide() {
-        currentOperator += '/';
-        input.textContent = `\u00f7`;
+        currentOperator = '/';
+        input.textContent += `\u00f7`;
         console.log('changed');
 }  
 
 function setAdd() {
-    currentOperator += '*';
-        input.textContent = `\u00d7`;
+    currentOperator = '+';
+        input.textContent += `+`;
         console.log('changed');
 
 }
 
 function setSubtract() {
-    currentOperator += '-';
-    input.textContent = `-`;
+    currentOperator = '-';
+    input.textContent += `-`;
     console.log('changed'); 
 }
 
 function setMultiply() {
-    currentOperator += '*';
-    input.textContent = `\u00d7`;
+    currentOperator = '*';
+    input.textContent += `\u00d7`;
     console.log('changed'); 
 }
 
 function doMath() {
-    input.textContent = '=';
     if (num1, currentOperator, num2) {
     input.textContent = `${calculatorOp(num1, currentOperator, num2)}`;
     num1 = 0;
@@ -175,16 +174,16 @@ add.addEventListener('click', setAdd);
 multiply.addEventListener('click', setMultiply);
 subtract.addEventListener('click', setSubtract);
 equals.addEventListener('click', doMath);
-one.addEventListener('click', selectZero);
+zero.addEventListener('click', selectZero);
 one.addEventListener('click', selectOne);
-one.addEventListener('click', selectTwo);
-one.addEventListener('click', selectThree);
-one.addEventListener('click', selectFour);
-one.addEventListener('click', selectFive);
-one.addEventListener('click', selectSix);
-one.addEventListener('click', selectSeven);
-one.addEventListener('click', selectEight);
-one.addEventListener('click', selectNine);
+two.addEventListener('click', selectTwo);
+three.addEventListener('click', selectThree);
+four.addEventListener('click', selectFour);
+five.addEventListener('click', selectFive);
+six.addEventListener('click', selectSix);
+seven.addEventListener('click', selectSeven);
+eight.addEventListener('click', selectEight);
+nine.addEventListener('click', selectNine);
 
 
 
@@ -210,15 +209,15 @@ function divideNums(a, b) {
 
 function calculatorOp(a, operator, b) {
     if (operator === '+') {
-        return add(a, b);
+        return addNums(a, b);
     }
     else if (operator === '-') {
-        return subtract(a, b);
+        return subtractNums(a, b);
     }
-    else if (operator === 'x') {
-        return multiply(a, b);
+    else if (operator === '*') {
+        return multiplyNums(a, b);
     }
-    else if (operator === `&divide`) {
-        return divide(a, b);
+    else if (operator === `/`) {
+        return divideNums(a, b);
     }
 }
