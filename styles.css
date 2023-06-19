@@ -59,6 +59,8 @@ button {
     gap: 30px;
     border-style: solid;
     border-color: black;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -66,11 +68,3 @@ button:hover {
     background-color: #E0E0E0;
 }
 
-p {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    height: 20px;
-    width: 30px;
-}
