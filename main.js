@@ -31,7 +31,7 @@ function setDivide() {
         console.log('changed');
     }
     else if (num1 && num2) {
-        num1 = calculatorOp(num1, currentOperator, num2);
+        num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
         currentOperator = '/';
         num2 = '';
         input.textContent += `\u00f7`;
@@ -45,7 +45,7 @@ function setAdd() {
         console.log('changed');
     }
     else if (num1 && num2) {
-        num1 = calculatorOp(num1, currentOperator, num2);
+        num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
         currentOperator = '+';
         num2 = '';
         input.textContent += `+`;
@@ -60,7 +60,7 @@ function setSubtract() {
     console.log('changed');
     }
     else if (num1 && num2) {
-            num1 = calculatorOp(num1, currentOperator, num2);
+            num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
             currentOperator = '-';
             num2 = '';
             input.textContent += `-`;
@@ -74,7 +74,7 @@ function setMultiply() {
     console.log('changed'); 
     }
     else if (num1 && num2) {
-        num1 = calculatorOp(num1, currentOperator, num2);
+        num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
         console.log(num1)
         currentOperator = '*';
         num2 = '';
@@ -87,7 +87,7 @@ function doMath() {
         console.log(num2);
         console.log(num1);
         console.log(currentOperator);
-    input.textContent = `${calculatorOp(num1, currentOperator, num2)}`;
+    input.textContent = `${calculatorOp(num1, currentOperator, num2).toFixed(2)}`;
     num1 = calculatorOp(num1, currentOperator, num2);
     currentOperator = '';
     num2 = '';
@@ -97,15 +97,20 @@ function doMath() {
 }
 
 function selectZero() {
-    if (!num1) {
+    if (!currentOperator) {
         num1 += '0';
         input.textContent += '0';
         display_value += '0';
     }
-    else if (!operator) {
+    else if (currentOperator) {
+        if (currentOperator === '/') {
+            alert('You can\'t divide by zero you sausage!')
+        }
+        else {
         num2 += '0';
         input.textContent += '0';
         display_value += '0';
+        }
     }
 }
 
@@ -251,6 +256,9 @@ clear.addEventListener('click', () => {
 }
 )
 
+remove.addEventListener('click', () => {
+    input.textContent.charAt(input.length -1) = '';
+})
 
 
 function addNums(a, b) {
