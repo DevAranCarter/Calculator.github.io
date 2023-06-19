@@ -1,6 +1,7 @@
-let num1 = 0;
+let num1 = '';
 let currentOperator = '';
-let num2 = 0; 
+let num2 = ''; 
+let display_value = '';
 
 const container = document.getElementById('calculator-container');
 const internals = document.querySelector('#internals');
@@ -20,38 +21,76 @@ const subtract = document.querySelector('#subtract');
 const multiply = document.querySelector('#times');
 const divide = document.querySelector('#divide');
 const equals = document.querySelector('#equals');
+const clear = document.querySelector('#clear');
+const remove = document.querySelector('#delete');
 
 function setDivide() {
+    if (!num2) {
         currentOperator = '/';
         input.textContent += `\u00f7`;
         console.log('changed');
+    }
+    else if (num1 && num2) {
+        num1 = calculatorOp(num1, currentOperator, num2);
+        currentOperator = '/';
+        num2 = '';
+        input.textContent += `\u00f7`;
+    }
 }  
 
 function setAdd() {
+    if (!num2) {
     currentOperator = '+';
         input.textContent += `+`;
         console.log('changed');
+    }
+    else if (num1 && num2) {
+        num1 = calculatorOp(num1, currentOperator, num2);
+        currentOperator = '+';
+        num2 = '';
+        input.textContent += `+`;
+    }
 
 }
 
 function setSubtract() {
+    if (!num2) {
     currentOperator = '-';
     input.textContent += `-`;
-    console.log('changed'); 
+    console.log('changed');
+    }
+    else if (num1 && num2) {
+            num1 = calculatorOp(num1, currentOperator, num2);
+            currentOperator = '-';
+            num2 = '';
+            input.textContent += `-`;
+    }
 }
 
 function setMultiply() {
+    if (!num2) {
     currentOperator = '*';
     input.textContent += `\u00d7`;
     console.log('changed'); 
+    }
+    else if (num1 && num2) {
+        num1 = calculatorOp(num1, currentOperator, num2);
+        console.log(num1)
+        currentOperator = '*';
+        num2 = '';
+        input.textContent += `\u00d7`;
+    }
 }
 
 function doMath() {
     if (num1, currentOperator, num2) {
+        console.log(num2);
+        console.log(num1);
+        console.log(currentOperator);
     input.textContent = `${calculatorOp(num1, currentOperator, num2)}`;
-    num1 = 0;
+    num1 = calculatorOp(num1, currentOperator, num2);
     currentOperator = '';
-    num2 = 0;
+    num2 = '';
     }
 
 
@@ -59,111 +98,131 @@ function doMath() {
 
 function selectZero() {
     if (!num1) {
-        num1 = 0;
+        num1 += '0';
         input.textContent += '0';
+        display_value += '0';
     }
-    else if (!num2) {
-        num2 = 0;
+    else if (!operator) {
+        num2 += '0';
         input.textContent += '0';
+        display_value += '0';
     }
 }
 
 function selectOne() {
-    if (!num1) {
-        num1 = 1;
+    if (!currentOperator) {
+        num1 += '1';
         input.textContent += '1';
+        display_value += '1';
     }
-    else if (!num2) {
-        num2 = 1;
+    else if (currentOperator) {
+        num2 = '1';
         input.textContent += '1';
+        display_value =+ '1';
     }
 }
 
 function selectTwo() {
-    if (!num1) {
-        num1 = 2;
+    if (!currentOperator) {
+        num1 += '2';
         input.textContent += '2';
+        display_value += '2'; 
     }
-    else if (!num2) {
-        num2 = 2;
+    else if (currentOperator) {
+        num2 = '2';
         input.textContent += '2';
+        display_value += '2';
     }
 }
 
 function selectThree() {
-    if (!num1) {
-        num1 = 3;
+    if (!currentOperator) {
+        num1 += '3';
         input.textContent += '3';
+        display_value += '3';
     }
-    else if (!num2) {
-        num2 = 3;
+    else if (currentOperator) {
+        num2 += '3';
         input.textContent += '3';
+        display_value += '3';
     }
 }
 
 function selectFour() {
-    if (!num1) {
-        num1 = 4;
+    if (!currentOperator) {
+        num1 += '4';
         input.textContent += '4';
+        display_value += '4';
     }
-    else if (!num2) {
-        num2 = 4;
+    else if (currentOperator) {
+        num2 += '4';
         input.textContent += '4';
+        display_value += '4';
     }
 }
 
 function selectFive() {
-    if (!num1) {
-        num1 = 5;
+    if (!currentOperator) {
+        num1 += '5';
         input.textContent += '5';
+        display_value += '5';
     }
-    else if (!num2) {
-        num2 = 5;
+    else if (currentOperator) {
+        num2 += '5';
         input.textContent += '5';
+        display_value += '5';
     }
 }
 
 function selectSix() {
-    if (!num1) {
-        num1 = 6;
+    if (!currentOperator) {
+        num1 += '6';
         input.textContent += '6';
+        display_value += '6';
     }
-    else if (!num2) {
-        num2 = 6;
+    else if (currentOperator) {
+        num2 += '6';
         input.textContent += '6';
+        display_value += '6';
     }
 }
 
 function selectSeven() {
-    if (!num1) {
-        num1 = 7;
+    if (!currentOperator) {
+        num1 += '7';
         input.textContent += '7';
+        display_value += '7';
     }
-    else if (!num2) {
-        num2 = 7;
+    else if (currentOperator) {
+        num2 += '7';
         input.textContent += '7';
+        display_value += '7';
     }
 }
 
 function selectEight() {
-    if (!num1) {
-        num1 = 8;
+    if (!currentOperator) {
+        num1 += '8';
         input.textContent += '8';
+        display_value += '8';
     }
-    else if (!num2) {
-        num2 = 8;
+    else if (currentOperator) {
+        num2 += '8';
         input.textContent += '8';
+        display_value += '8';
     }
 }
 
 function selectNine() {
-    if (!num1) {
-        num1 = 9;
+    if (!currentOperator) {
+        num1 += '9';
         input.textContent += '9';
+        display_value += '9';
     }
-    else if (!num2) {
-        num2 = 9;
+    else if (currentOperator) {
+        num2 += '9';
         input.textContent += '9';
+        display_value += '9';
     }
 }
 
@@ -184,6 +243,13 @@ six.addEventListener('click', selectSix);
 seven.addEventListener('click', selectSeven);
 eight.addEventListener('click', selectEight);
 nine.addEventListener('click', selectNine);
+clear.addEventListener('click', () => {
+    input.textContent = '';
+    num1 = '';
+    num2 = '';
+    currentOperator = '';
+}
+)
 
 
 
@@ -209,15 +275,15 @@ function divideNums(a, b) {
 
 function calculatorOp(a, operator, b) {
     if (operator === '+') {
-        return addNums(a, b);
+        return addNums(parseInt(a), parseInt(b));
     }
     else if (operator === '-') {
-        return subtractNums(a, b);
+        return subtractNums(parseInt(a), parseInt(b));
     }
     else if (operator === '*') {
-        return multiplyNums(a, b);
+        return multiplyNums(parseInt(a), parseInt(b));
     }
     else if (operator === `/`) {
-        return divideNums(a, b);
+        return divideNums(parseInt(a), parseInt(b));
     }
 }
