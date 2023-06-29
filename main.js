@@ -3,7 +3,7 @@ let currentOperator = '';
 let num2 = ''; 
 let display_value = '';
 let adecimal = true;
-let bdecimal = false;
+let bdecimal = true;
 
 const container = document.getElementById('calculator-container');
 const internals = document.querySelector('#internals');
@@ -96,7 +96,7 @@ function removeCurrent() {
         console.log(num1);
         console.log('rmv num1');
         adecimal = true;
-        bdecimal = false;
+        bdecimal = true;
 
     }
     else if (num1 && currentOperator && !num2) {
@@ -117,7 +117,8 @@ function doMath() {
     if (num1, currentOperator, num2) {
         if (!isInt(calculatorOp(num1, currentOperator, num2))) 
         {
-            input.textContent = `${calculatorOp(num1, currentOperator, num2).toFixed(2)}` 
+            input.textContent = `${calculatorOp(num1, currentOperator, num2).toFixed(1)}` 
+            bdecimal = true;
         }
         else {
     input.textContent = `${calculatorOp(num1, currentOperator, num2)}`;
@@ -127,6 +128,7 @@ function doMath() {
     console.log(num1)
     currentOperator = '';
     num2 = '';
+    bdecimal = true;
         }
 
 
@@ -134,16 +136,17 @@ function doMath() {
 } 
 
 function addDecimal() {
-    if (adecimal === true) {
+    if (adecimal === true && bdecimal === true && !currentOperator) {
     input.textContent += '.';
     num1 += '.';
     adecimal = false;
-    bdecimal = true;
+    console.log("hi");
     }
-    else if (bdecimal === true) {
+    else if (bdecimal === true && adecimal === false && currentOperator) {
         input.textContent += '.';
         num2 += '.';
         bdecimal = false;
+        console.log('bye');
     }
     
 }
@@ -307,7 +310,7 @@ clear.addEventListener('click', () => {
     num2 = '';
     currentOperator = '';
     adecimal = true;
-    bdecimal = false;
+    bdecimal = true;
 }
 )
 
