@@ -1,3 +1,8 @@
+
+body {
+    background-color: lightcyan;
+}
+
 #calculator-container {
     height: 550px;
     width: 400px;
@@ -70,3 +75,72 @@ button:hover {
     background-color: #E0E0E0;
 }
 
+#divide {
+    background-color: aqua;
+}
+#times {
+    background-color: aquamarine;
+}
+#subtract {
+    background-color: thistle;
+}
+#add {
+    background-color: deeppink;
+}
+
+#zero {
+    background-color: fuchsia;
+}
+
+#one {
+    background-color: lavender;
+}
+
+#two {
+    background-color:springgreen;
+}
+
+#three {
+    background-color: tomato;
+}
+
+#four {
+    background-color: skyblue;
+}
+
+#five {
+    background-color: plum;
+}
+
+#six {
+    background-color: pink;
+}
+
+#seven {
+    background-color: peachpuff;
+}
+
+#eight {
+    background-color: orchid;
+}
+
+#nine {
+    background-color: mintcream;
+
+}
+
+#equals {
+    background-color: mistyrose;
+}
+
+#decimal {
+    background-color: lightcoral;
+}
+
+#clear {
+    background-color: lemonchiffon;
+}
+
+#delete {
+    background-color: lawngreen;
+}

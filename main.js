@@ -2,6 +2,8 @@ let num1 = '';
 let currentOperator = '';
 let num2 = ''; 
 let display_value = '';
+let adecimal = true;
+let bdecimal = false;
 
 const container = document.getElementById('calculator-container');
 const internals = document.querySelector('#internals');
@@ -21,6 +23,7 @@ const subtract = document.querySelector('#subtract');
 const multiply = document.querySelector('#times');
 const divide = document.querySelector('#divide');
 const equals = document.querySelector('#equals');
+const decimal = document.querySelector('#decimal');
 const clear = document.querySelector('#clear');
 const remove = document.querySelector('#delete');
 
@@ -31,7 +34,7 @@ function setDivide() {
         console.log('changed');
     }
     else if (num1 && num2) {
-        num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
+        num1 = calculatorOp(num1, currentOperator, num2);
         currentOperator = '/';
         num2 = '';
         input.textContent += `\u00f7`;
@@ -45,7 +48,7 @@ function setAdd() {
         console.log('changed');
     }
     else if (num1 && num2) {
-        num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
+        num1 = calculatorOp(num1, currentOperator, num2);
         currentOperator = '+';
         num2 = '';
         input.textContent += `+`;
@@ -60,7 +63,7 @@ function setSubtract() {
     console.log('changed');
     }
     else if (num1 && num2) {
-            num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
+            num1 = calculatorOp(num1, currentOperator, num2);
             currentOperator = '-';
             num2 = '';
             input.textContent += `-`;
@@ -74,7 +77,7 @@ function setMultiply() {
     console.log('changed'); 
     }
     else if (num1 && num2) {
-        num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
+        num1 = calculatorOp(num1, currentOperator, num2);
         console.log(num1)
         currentOperator = '*';
         num2 = '';
@@ -82,18 +85,67 @@ function setMultiply() {
     }
 }
 
-function doMath() {
-    if (num1, currentOperator, num2) {
-        console.log(num2);
+function isInt(num) {
+    return num % 1 === 0;
+}
+
+function removeCurrent() {
+    if (num1 && !currentOperator) {
+        num1 = '';
+        input.textContent = '';
         console.log(num1);
-        console.log(currentOperator);
-    input.textContent = `${calculatorOp(num1, currentOperator, num2).toFixed(2)}`;
-    num1 = calculatorOp(num1, currentOperator, num2);
-    currentOperator = '';
-    num2 = '';
+        console.log('rmv num1');
+        adecimal = true;
+        bdecimal = false;
+
+    }
+    else if (num1 && currentOperator && !num2) {
+        input.textContent = num1;
+        currentOperator = '';
+        console.log('rmv currentOp')
+    }
+    else if (num1 && currentOperator && num2) {
+        input.textContent = num1 + currentOperator;
+        num2 = '';
+        console.log('rmv num2')
+        bdecimal = true;
     }
 
+}
+    
+function doMath() {
+    if (num1, currentOperator, num2) {
+        if (!isInt(calculatorOp(num1, currentOperator, num2))) 
+        {
+            input.textContent = `${calculatorOp(num1, currentOperator, num2).toFixed(2)}` 
+        }
+        else {
+    input.textContent = `${calculatorOp(num1, currentOperator, num2)}`;
+    console.log(num1)
+    console.log(num2)
+    num1 = calculatorOp(num1, currentOperator, num2).toFixed(2);
+    console.log(num1)
+    currentOperator = '';
+    num2 = '';
+        }
 
+
+}
+} 
+
+function addDecimal() {
+    if (adecimal === true) {
+    input.textContent += '.';
+    num1 += '.';
+    adecimal = false;
+    bdecimal = true;
+    }
+    else if (bdecimal === true) {
+        input.textContent += '.';
+        num2 += '.';
+        bdecimal = false;
+    }
+    
 }
 
 function selectZero() {
@@ -248,17 +300,18 @@ six.addEventListener('click', selectSix);
 seven.addEventListener('click', selectSeven);
 eight.addEventListener('click', selectEight);
 nine.addEventListener('click', selectNine);
+decimal.addEventListener('click', addDecimal);
 clear.addEventListener('click', () => {
     input.textContent = '';
     num1 = '';
     num2 = '';
     currentOperator = '';
+    adecimal = true;
+    bdecimal = false;
 }
 )
 
-remove.addEventListener('click', () => {
-    input.textContent.charAt(input.length -1) = '';
-})
+remove.addEventListener('click', removeCurrent);
 
 
 function addNums(a, b) {
@@ -283,15 +336,15 @@ function divideNums(a, b) {
 
 function calculatorOp(a, operator, b) {
     if (operator === '+') {
-        return addNums(parseInt(a), parseInt(b));
+        return addNums(parseFloat(a), parseFloat(b));
     }
     else if (operator === '-') {
-        return subtractNums(parseInt(a), parseInt(b));
+        return subtractNums(parseFloat(a), parseFloat(b));
     }
     else if (operator === '*') {
-        return multiplyNums(parseInt(a), parseInt(b));
+        return multiplyNums(parseFloat(a), parseFloat(b));
     }
     else if (operator === `/`) {
-        return divideNums(parseInt(a), parseInt(b));
+        return divideNums(parseFloat(a), parseFloat(b));
     }
 }
